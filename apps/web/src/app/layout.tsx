@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import CommandPalette from "@/components/layout/CommandPalette";
+import MarketProvider from "@/providers/MarketProvider";
 import "../styles/globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -77,7 +78,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="bg-cosmos text-star antialiased">
-        {children}
+        <MarketProvider>
+          {children}
+        </MarketProvider>
         <CommandPalette />
         <Analytics />
       </body>
