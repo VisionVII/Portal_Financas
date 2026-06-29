@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import CommandPalette from "@/components/layout/CommandPalette";
 import "../styles/globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -76,6 +78,8 @@ export default function RootLayout({
       </head>
       <body className="bg-cosmos text-star antialiased">
         {children}
+        <CommandPalette />
+        <Analytics />
       </body>
     </html>
   );
