@@ -20,6 +20,14 @@ const CHART_TYPES = [
   { id: "bar", label: "Barras" },
 ];
 
+// Pre-computed volume bars (fixed to avoid SSR hydration mismatch)
+const VOLUME_HEIGHTS = [
+  45, 62, 38, 71, 55, 83, 47, 66, 52, 79, 41, 68,
+  57, 74, 49, 85, 43, 61, 76, 39, 88, 53, 67, 44,
+  72, 58, 81, 46, 63, 77, 42, 69, 54, 86, 48, 64,
+  78, 40, 91, 56, 70, 45, 82, 50, 65, 79, 43, 98,
+];
+
 // Mock sparkline data
 const SPARKLINE = [
   44, 47, 43, 48, 52, 49, 54, 58, 55, 62, 59, 64, 68, 65, 71, 69, 74, 78, 75,
@@ -272,19 +280,16 @@ export default function HeroMarket() {
           <span className="text-2xs font-mono text-aurora">$34.2B (24h)</span>
         </div>
         <div className="flex gap-px h-10 items-end">
-          {Array.from({ length: 48 }).map((_, i) => {
-            const h = 20 + Math.random() * 80;
-            return (
-              <div
-                key={i}
-                className="flex-1 rounded-sm"
-                style={{
-                  height: `${h}%`,
-                  backgroundColor: i > 40 ? "rgba(0,212,255,0.5)" : "rgba(37,45,66,0.8)",
-                }}
-              />
-            );
-          })}
+          {VOLUME_HEIGHTS.map((h, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-sm"
+              style={{
+                height: `${h}%`,
+                backgroundColor: i > 40 ? "rgba(0,212,255,0.5)" : "rgba(37,45,66,0.8)",
+              }}
+            />
+          ))}
         </div>
       </div>
     </div>

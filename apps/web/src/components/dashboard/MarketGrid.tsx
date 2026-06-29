@@ -26,20 +26,13 @@ const ASSETS = [
   { symbol: "NASDAQ", name: "Nasdaq 100",   price: "18,760",   change: +0.62,  volume: "$190B",  sector: "Índices",   icon: "💻" },
 ];
 
+// Pre-computed sparkline paths (fixed to avoid SSR hydration mismatch)
+const SPARK_UP   = "M 0 28 L 9 24 L 18 26 L 27 20 L 36 22 L 45 16 L 55 18 L 64 12 L 73 14 L 82 8 L 91 10 L 100 4";
+const SPARK_DOWN = "M 0 4 L 9 8 L 18 6 L 27 12 L 36 10 L 45 16 L 55 14 L 64 20 L 73 18 L 82 24 L 91 22 L 100 28";
+
 // Tiny sparkline
 function MiniSpark({ up }: { up: boolean }) {
-  const pts = Array.from({ length: 12 }).map((_, i) => ({
-    x: i,
-    y: 20 + Math.random() * 60 + (up ? i * 1.5 : -i * 1.5),
-  }));
-  const minY = Math.min(...pts.map((p) => p.y));
-  const maxY = Math.max(...pts.map((p) => p.y));
-  const normalize = (y: number) =>
-    ((y - minY) / (maxY - minY || 1)) * 30;
-
-  const d = pts
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${(p.x / 11) * 100} ${30 - normalize(p.y)}`)
-    .join(" ");
+  const d = up ? SPARK_UP : SPARK_DOWN;
 
   return (
     <svg viewBox="0 0 100 30" className="w-16 h-8" preserveAspectRatio="none">

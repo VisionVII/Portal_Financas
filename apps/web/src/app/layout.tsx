@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
 
@@ -20,6 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0D1117",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: {
     default: "Portal Finanças — Inteligência Financeira em Tempo Real",
@@ -39,12 +46,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Portal Finanças" }],
   creator: "Portal Finanças",
-  themeColor: "#0D1117",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
