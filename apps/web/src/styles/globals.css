@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   QUANTUM FINANCE DESIGN SYSTEM — Global Styles
+   Portal Finanças
+   ============================================================ */
+
+/* === FONTES === */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* === VARIÁVEIS CSS === */
+@layer base {
+  :root {
+    /* Fundos */
+    --void:    #080B14;
+    --cosmos:  #0D1117;
+    --nebula:  #161B27;
+    --crater:  #1E2538;
+    --orbit:   #252D42;
+
+    /* Accents */
+    --aurora:  #00D4FF;
+    --plasma:  #7B61FF;
+    --pulse:   #00FF94;
+    --flare:   #FF4D6D;
+    --solar:   #FFB800;
+    --nova:    #FF6B35;
+
+    /* Texto */
+    --star:      #E8EDF5;
+    --moonlight: #B8C2D4;
+    --comet:     #8892A4;
+    --asteroid:  #4A5568;
+
+    /* Sistema */
+    --background: 217 24% 7%;
+    --foreground:  220 25% 93%;
+    --card:        217 24% 11%;
+    --card-foreground: 220 25% 93%;
+    --border:      222 22% 20%;
+    --input:       222 22% 16%;
+    --ring:        195 100% 50%;
+    --primary:     195 100% 50%;
+    --primary-foreground: 217 24% 7%;
+    --secondary:   252 100% 68%;
+    --secondary-foreground: 220 25% 93%;
+    --muted:       217 24% 11%;
+    --muted-foreground: 215 14% 55%;
+    --accent:      222 22% 16%;
+    --accent-foreground: 220 25% 93%;
+    --destructive:  344 100% 65%;
+    --destructive-foreground: 220 25% 93%;
+    --radius: 0.5rem;
+  }
+}
+
+/* === RESET E BASE === */
+@layer base {
+  * {
+    border-color: theme('colors.orbit');
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', sans-serif;
+    background-color: #0D1117;
+    color: #E8EDF5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0D1117;
+    color: #E8EDF5;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0D1117;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #252D42;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00D4FF33;
+  }
+
+  /* Seleção de texto */
+  ::selection {
+    background-color: rgba(0, 212, 255, 0.2);
+    color: #E8EDF5;
+  }
+
+  /* Tipografia base */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #E8EDF5;
+  }
+
+  /* Números e preços: sempre mono */
+  .price, .ticker-value, .number-display, [data-type="price"] {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Focus visible acessível */
+  :focus-visible {
+    outline: 2px solid #00D4FF;
+    outline-offset: 2px;
+  }
+}
+
+/* === COMPONENTES === */
+@layer components {
+
+  /* ----- Card Base ----- */
+  .qf-card {
+    @apply bg-nebula border border-orbit rounded-lg;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: box-shadow 200ms ease, border-color 200ms ease;
+  }
+
+  .qf-card:hover {
+    border-color: rgba(0, 212, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(0,212,255,0.08);
+  }
+
+  /* ----- Stat Card ----- */
+  .qf-stat-card {
+    @apply qf-card p-4;
+  }
+
+  /* ----- Badge ----- */
+  .qf-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium font-mono;
+  }
+
+  .qf-badge-bullish {
+    @apply qf-badge bg-pulse/10 text-pulse border border-pulse/20;
+  }
+
+  .qf-badge-bearish {
+    @apply qf-badge bg-flare/10 text-flare border border-flare/20;
+  }
+
+  .qf-badge-neutral {
+    @apply qf-badge bg-solar/10 text-solar border border-solar/20;
+  }
+
+  .qf-badge-aurora {
+    @apply qf-badge bg-aurora/10 text-aurora border border-aurora/20;
+  }
+
+  /* ----- Botões ----- */
+  .qf-btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all duration-150;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora/50;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .qf-btn-primary {
+    @apply qf-btn bg-aurora text-cosmos hover:bg-aurora/90 active:scale-95 px-4 py-2 text-sm;
+    box-shadow: 0 0 20px rgba(0,212,255,0.2);
+  }
+
+  .qf-btn-secondary {
+    @apply qf-btn bg-crater border border-orbit hover:border-aurora/30 text-star px-4 py-2 text-sm;
+  }
+
+  .qf-btn-ghost {
+    @apply qf-btn hover:bg-crater text-comet hover:text-star px-4 py-2 text-sm;
+  }
+
+  .qf-btn-danger {
+    @apply qf-btn bg-flare/10 border border-flare/30 text-flare hover:bg-flare/20 px-4 py-2 text-sm;
+  }
+
+  /* ----- Input ----- */
+  .qf-input {
+    @apply w-full bg-crater border border-orbit rounded-md px-3 py-2 text-sm text-star;
+    @apply placeholder:text-comet focus:outline-none focus:border-aurora/50 focus:ring-1 focus:ring-aurora/20;
+    @apply transition-colors duration-150;
+  }
+
+  /* ----- Ticker (preço inline) ----- */
+  .qf-price {
+    @apply font-mono font-semibold tabular-nums;
+  }
+
+  .qf-price-up {
+    @apply qf-price text-pulse;
+  }
+
+  .qf-price-down {
+    @apply qf-price text-flare;
+  }
+
+  .qf-price-neutral {
+    @apply qf-price text-solar;
+  }
+
+  /* ----- Glow effects ----- */
+  .glow-aurora {
+    box-shadow: 0 0 30px rgba(0,212,255,0.25);
+  }
+
+  .glow-plasma {
+    box-shadow: 0 0 30px rgba(123,97,255,0.25);
+  }
+
+  .glow-pulse {
+    box-shadow: 0 0 30px rgba(0,255,148,0.25);
+  }
+
+  /* ----- Gradient text ----- */
+  .text-gradient-aurora {
+    background: linear-gradient(135deg, #00D4FF 0%, #7B61FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-pulse {
+    background: linear-gradient(135deg, #00FF94 0%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ----- Skeleton loader ----- */
+  .qf-skeleton {
+    @apply bg-orbit rounded animate-pulse;
+    background: linear-gradient(90deg, #1E2538 25%, #252D42 50%, #1E2538 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* ----- Divider com linha ----- */
+  .qf-divider {
+    @apply border-t border-orbit;
+  }
+
+  /* ----- Ticker tape ----- */
+  .ticker-tape {
+    @apply flex gap-8 animate-ticker whitespace-nowrap;
+  }
+
+  /* ----- AI Signal indicator ----- */
+  .ai-signal {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 bg-plasma/10 border border-plasma/30 rounded-full;
+    @apply text-xs font-medium text-plasma;
+  }
+
+  .ai-signal::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full bg-plasma animate-pulse-aurora;
+    display: inline-block;
+  }
+}
+
+/* === UTILITÁRIOS CUSTOMIZADOS === */
+@layer utilities {
+
+  /* Truncar com elipse */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Grid de dashboard */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 56px 1fr;
+    min-height: 100vh;
+  }
+
+  /* Borda com gradiente */
+  .border-gradient-aurora {
+    border: 1px solid transparent;
+    background: linear-gradient(#161B27, #161B27) padding-box,
+                linear-gradient(135deg, #00D4FF, #7B61FF) border-box;
+  }
+
+  /* Glassmorphism sutil */
+  .glass {
+    background: rgba(22, 27, 39, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Tabelas numéricas alinhadas */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Espaçamento para sidebar */
+  .with-sidebar {
+    margin-left: 240px;
+  }
+
+  /* Responsive breakpoint helpers */
+  @media (max-width: 1024px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    .with-sidebar {
+      margin-left: 0;
+    }
+  }
+}
