@@ -177,7 +177,7 @@ pnpm clean
 
 ## 📄 Licença
 
-Proprietário — todos os direitos reservados.
+Proprietário  Victor Hugo Lopes Gonçalves — todos os direitos reservados.
 
 ---
 
